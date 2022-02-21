@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tp android1</string>
+    <string name="str_calcul">Calcul</string>
+    <string name="str_hello">Hello Mobile World!</string>
+</resources>
