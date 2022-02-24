@@ -34,10 +34,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text=saisie.getText().toString();
-                listhistorique.add(text);
+
+                    listhistorique.add(text + "= "+ operation(text));
 
             }
         });
+
+    }
+
+    private String operation(String op){
+
+        if (op.length() > 3|| op.length()<3) {
+            return  "Erreur expression";
+        }
+
+        String []parse=op.split("");
+
+        if (op.contains("+")){
+         double   res= (Double.parseDouble(parse[0])+Double.parseDouble(parse[2]));
+         return  res+"";
+
+        }
+        else if (op.contains("-")){
+            double   res= (Double.parseDouble(parse[0])-Double.parseDouble(parse[2]));
+            return  res+"";
+        }
+
+        else if (op.contains("/")){
+            double   res= (Double.parseDouble(parse[0])/Double.parseDouble(parse[2]));
+            return  res+"";
+        }
+        else if (op.contains("*")){
+            double   res= (Double.parseDouble(parse[0])*Double.parseDouble(parse[2]));
+            return  res+"";
+        }
+        else {
+            return  "erreur";
+        }
 
     }
 
