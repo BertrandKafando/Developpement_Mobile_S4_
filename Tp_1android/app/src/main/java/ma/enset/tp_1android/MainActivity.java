@@ -33,42 +33,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text=saisie.getText().toString();
-                System.out.println(text);
-                    saisie.setText("hello");
-                listhistorique.add(text + "= ");
+
+                listhistorique.add(text + "= "+ operation(text));
+                System.out.println(operation(text));
 
             }
         });
-    }
-
-    private String operation(String op){
-
-        if (op.contains("+")){
-            String []parse=op.split("");
-            double   res= (Double.parseDouble(parse[0])+Double.parseDouble(parse[2]));
-            return  res+"";
-
-        }
-        else if (op.contains("-")){
-            String []parse=op.split("-");
-            double   res= (Double.parseDouble(parse[0])-Double.parseDouble(parse[2]));
-            return  res+"";
-        }
-
-        else if (op.contains("/")){
-            String []parse=op.split("/");
-            double   res= (Double.parseDouble(parse[0])/Double.parseDouble(parse[2]));
-            return  res+"";
-        }
-        else if (op.contains("*")){
-            String []parse=op.split(" * ");
-            double   res= (Double.parseDouble(parse[0])*Double.parseDouble(parse[2]));
-            return  res+"";
-        }
-        else {
-            return  "erreur";
-        }
 
     }
+    private String operation(String op) {
+
+
+        if (op.contains("+")) {
+            String[] parse = op.split("\\+");
+            double res = (Double.parseDouble(parse[0]) + Double.parseDouble(parse[1]));
+            return res + "";
+
+        }
+        if (op.contains("-")) {
+            String[] parse = op.split("-");
+            double res = (Double.parseDouble(parse[0]) - Double.parseDouble(parse[1]));
+            return res + "";
+        }
+        if (op.contains("/")) {
+            String[] parse = op.split("/");
+            double res = (Double.parseDouble(parse[0]) / Double.parseDouble(parse[1]));
+            return res + "";
+        }
+        if (op.contains("*")) {
+            String[] parse = op.split("\\*");
+            double res = (Double.parseDouble(parse[0]) * Double.parseDouble(parse[1]));
+            return res + "";
+        }
+        return "erreur";
+
+    }
+
 
 }
