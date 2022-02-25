@@ -11,15 +11,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText saisie;
-    private TableLayout tableLayout;
     private Button plus;private  Button moins; private  Button div;private Button mul;
     private Button un; private Button deux;private Button trois; private  Button quatre;
     private  Button cinq;private  Button six; private Button sept; private  Button huit;
     private  Button vider; private  Button neuf; private Button zero; private  Button egal;
     private TextView operation;
-
     private  String text="";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,11 +115,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 saisie.setText("");
                 text="";
+                operation.setText("");
             }
         });
-
-
-
 
          egal.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -133,45 +128,71 @@ public class MainActivity extends AppCompatActivity {
              }
          });
 
-
          plus.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-
-                 saisie.setText(saisie.getText().toString()+plus.getText());
-                 text=saisie.getText().toString();
-                 saisie.setText(""); operation.setText(text);
+                 try {
+                     Double.parseDouble(saisie.getText().toString());
+                     saisie.setText(saisie.getText().toString()+plus.getText());
+                     text=saisie.getText().toString();
+                     saisie.setText(""); operation.setText(text);
+                 }catch(NumberFormatException e) {
+                     saisie.setText(saisie.getText().toString()+plus.getText());
+                     text="0"+plus.getText();
+                     saisie.setText(""); operation.setText(text);
+                 }
              }
+
+
+
          });
         moins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                saisie.setText(saisie.getText().toString()+moins.getText());
-                text=saisie.getText().toString();
-                saisie.setText("");operation.setText(text);
+                try {
+                    Double.parseDouble(saisie.getText().toString());
+                    saisie.setText(saisie.getText().toString()+moins.getText());
+                    text=saisie.getText().toString();
+                    saisie.setText(""); operation.setText(text);
+                }catch(NumberFormatException e) {
+                    saisie.setText(saisie.getText().toString()+moins.getText());
+                    text="0"+moins.getText();
+                    saisie.setText(""); operation.setText(text);
+                }
             }
         });
         div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                saisie.setText(saisie.getText().toString()+div.getText());
-                text=saisie.getText().toString();
-                saisie.setText("");operation.setText(text);
+                try {
+                    Double.parseDouble(saisie.getText().toString());
+                    saisie.setText(saisie.getText().toString()+div.getText());
+                    text=saisie.getText().toString();
+                    saisie.setText(""); operation.setText(text);
+                }catch(NumberFormatException e) {
+                    saisie.setText(saisie.getText().toString()+div.getText());
+                    text="0"+div.getText();
+                    saisie.setText(""); operation.setText(text);
+                }
             }
         });
         mul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                saisie.setText(saisie.getText().toString()+mul.getText());
-                text=saisie.getText().toString();
-                saisie.setText("");operation.setText(text);
+                try {
+                    Double.parseDouble(saisie.getText().toString());
+                    saisie.setText(saisie.getText().toString()+mul.getText());
+                    text=saisie.getText().toString();
+                    saisie.setText(""); operation.setText(text);
+                }catch(NumberFormatException e) {
+                    saisie.setText(saisie.getText().toString()+mul.getText());
+                    text="0"+mul.getText();
+                    saisie.setText(""); operation.setText(text);
+                }
             }
         });
-
-
     }
 
 
