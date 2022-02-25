@@ -36,43 +36,38 @@ public class MainActivity extends AppCompatActivity {
                 String text=saisie.getText().toString();
 
                     listhistorique.add(text + "= "+ operation(text));
+                System.out.println(operation(text));
 
             }
         });
 
     }
+    private String operation(String op) {
 
-    private String operation(String op){
 
-        if (op.length() > 3|| op.length()<3) {
-            return  "Erreur expression";
-        }
-
-        String []parse=op.split("");
-
-        if (op.contains("+")){
-         double   res= (Double.parseDouble(parse[0])+Double.parseDouble(parse[2]));
-         return  res+"";
+        if (op.contains("+")) {
+            String[] parse = op.split("\\+");
+            double res = (Double.parseDouble(parse[0]) + Double.parseDouble(parse[1]));
+            return res + "";
 
         }
-        else if (op.contains("-")){
-            double   res= (Double.parseDouble(parse[0])-Double.parseDouble(parse[2]));
-            return  res+"";
+        if (op.contains("-")) {
+            String[] parse = op.split("-");
+            double res = (Double.parseDouble(parse[0]) - Double.parseDouble(parse[1]));
+            return res + "";
         }
-
-        else if (op.contains("/")){
-            double   res= (Double.parseDouble(parse[0])/Double.parseDouble(parse[2]));
-            return  res+"";
+        if (op.contains("/")) {
+            String[] parse = op.split("/");
+            double res = (Double.parseDouble(parse[0]) / Double.parseDouble(parse[1]));
+            return res + "";
         }
-        else if (op.contains("*")){
-            double   res= (Double.parseDouble(parse[0])*Double.parseDouble(parse[2]));
-            return  res+"";
+        if (op.contains("*")) {
+            String[] parse = op.split("\\*");
+            double res = (Double.parseDouble(parse[0]) * Double.parseDouble(parse[1]));
+            return res + "";
         }
-        else {
-            return  "erreur";
-        }
+        return "erreur";
 
     }
-
 
 }
