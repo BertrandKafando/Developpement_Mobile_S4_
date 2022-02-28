@@ -122,8 +122,14 @@ public class MainActivity extends AppCompatActivity {
          egal.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 String txt=text+saisie.getText().toString();
-                saisie.setText(operation(txt));operation.setText(txt+"=");
+                 if(saisie.getText().toString()==null){
+                     String txt=text;
+                     saisie.setText(operation(txt));operation.setText(txt+"=");
+                 }else{
+                     String txt=text+saisie.getText().toString();
+                     saisie.setText(operation(txt));operation.setText(txt+"=");
+                 }
+
 
              }
          });
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                      Double.parseDouble(saisie.getText().toString());
                      saisie.setText(saisie.getText().toString()+plus.getText());
                      text=saisie.getText().toString();
-                     saisie.setText(""); operation.setText(text);
+                     saisie.setText("0"); operation.setText(text);
                  }catch(NumberFormatException e) {
                      saisie.setText(saisie.getText().toString()+plus.getText());
                      text="0"+plus.getText();
@@ -154,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                     Double.parseDouble(saisie.getText().toString());
                     saisie.setText(saisie.getText().toString()+moins.getText());
                     text=saisie.getText().toString();
-                    saisie.setText(""); operation.setText(text);
+                    saisie.setText("0"); operation.setText(text);
                 }catch(NumberFormatException e) {
                     saisie.setText(saisie.getText().toString()+moins.getText());
                     text="0"+moins.getText();
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     Double.parseDouble(saisie.getText().toString());
                     saisie.setText(saisie.getText().toString()+div.getText());
                     text=saisie.getText().toString();
-                    saisie.setText(""); operation.setText(text);
+                    saisie.setText("0"); operation.setText(text);
                 }catch(NumberFormatException e) {
                     saisie.setText(saisie.getText().toString()+div.getText());
                     text="0"+div.getText();
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     Double.parseDouble(saisie.getText().toString());
                     saisie.setText(saisie.getText().toString()+mul.getText());
                     text=saisie.getText().toString();
-                    saisie.setText(""); operation.setText(text);
+                    saisie.setText("0"); operation.setText(text);
                 }catch(NumberFormatException e) {
                     saisie.setText(saisie.getText().toString()+mul.getText());
                     text="0"+mul.getText();
