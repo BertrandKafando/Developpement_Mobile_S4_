@@ -9,4 +9,6 @@ public interface GitRepoServiceAPI {
     //envoie une requete ver search/users avec la paramete q=query
     @GET("search/users")
     public Call<GitusersResponse>searchesUsers(@Query("q") String query);
+
+    //objet et non liste
 }
