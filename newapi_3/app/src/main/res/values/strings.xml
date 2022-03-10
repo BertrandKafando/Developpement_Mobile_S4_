@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">newapi_3</string>
     <string name="wel">Welcome</string>
-    <string name="keyw">keyword :</string>
-    <string name="datedeb">date :</string>
+    <string name="keyw">keyword</string>
+    <string name="datedeb">date</string>
     <string name="buttonsearch">search</string>
+    <string name="news">News</string>
+    <string name="alert">Put a Keyword</string>
 </resources>

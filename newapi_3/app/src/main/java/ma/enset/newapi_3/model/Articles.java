@@ -1,5 +1,6 @@
 package ma.enset.newapi_3.model;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 
@@ -8,14 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-public class Articles {
-    private  Source source;
+public class Articles implements Serializable {
+    private static transient Source source;
     private String author;
     private String title;
     private String description;
-    private URL url;
+    private  URL url;
     private URL urlToImage;
-    private Date publishedAt;
+    private  Date publishedAt;
     private String content;
 
     public Source getSource() {

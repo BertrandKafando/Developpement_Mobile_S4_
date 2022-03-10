@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class GlobalNews {
-    //private Status_ status;
+
     private int totalResults;
     public List<Articles>articles=new ArrayList<>();
 
