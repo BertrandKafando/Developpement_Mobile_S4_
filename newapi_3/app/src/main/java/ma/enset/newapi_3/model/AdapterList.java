@@ -20,17 +20,14 @@ import java.net.URL;
 import java.util.List;
 
 import ma.enset.newapi_3.R;
-
 public class AdapterList extends ArrayAdapter<Articles> {
     private List<Articles> news;
     private int ressource;
-
     public AdapterList(@NonNull Context context, int resource, @NonNull List<Articles> objects) {
         super(context, resource, objects);
         this.news=objects;
         this.ressource=resource;
     }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -40,14 +37,12 @@ public class AdapterList extends ArrayAdapter<Articles> {
             //contruire la vue  en fonction des elements du fihier xml==onsetview de oncreate
             listViewItem= LayoutInflater.from(getContext()).inflate(ressource,parent,false);
         }
-
         ImageView img=listViewItem.findViewById(R.id.imageView);
         TextView titre=listViewItem.findViewById(R.id.titre);
         TextView des=listViewItem.findViewById(R.id.descri);
-
         titre.setText(news.get(position).getTitle());
         des.setText(news.get(position).getDescription());
-
+        //inage
         Runnable thread=new Runnable() {
             @Override
             public void run() {
@@ -63,27 +58,8 @@ public class AdapterList extends ArrayAdapter<Articles> {
                 }
             }
         };
-
         Thread t=new Thread(thread);
         t.start();
-
-
-
-
-
-
-        /*
-        try {
-            URL url=news.get(position).getUrlToImage();
-            Bitmap bitmap= BitmapFactory.decodeStream(url.openStream());
-            img.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-         */
-
-
         return listViewItem;
     }
 }

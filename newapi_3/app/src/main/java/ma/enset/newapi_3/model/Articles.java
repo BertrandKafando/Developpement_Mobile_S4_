@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 
 public class Articles implements Serializable {

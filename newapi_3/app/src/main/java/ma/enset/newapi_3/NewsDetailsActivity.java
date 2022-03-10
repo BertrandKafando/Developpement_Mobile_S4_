@@ -49,7 +49,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                    @Override
                    public void run() {
                        try {
-                           Log.i("info",article.getUrlToImage().toString());
+                           Log.i("info2",article.getUrlToImage().toString());
                            URL url=article.getUrlToImage();
                            Bitmap bitmap= BitmapFactory.decodeStream(url.openStream());
                            img2.setImageBitmap(bitmap);

@@ -42,22 +42,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy strictMode=new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(strictMode);
-
-        setContentView(R.layout.activity_main);
         EditText keyw=findViewById(R.id.key);
         EditText date=findViewById(R.id.date);
         Button button=findViewById(R.id.searchbutton);
         ListView listView=findViewById(R.id.listview);
-
         AdapterList adapter=new AdapterList(this,R.layout.listviewlayout,strings);
         listView.setAdapter(adapter);
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -66,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         //preparation
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://newsapi.org/")
@@ -74,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NewsRepository newsrepo=retrofit.create(NewsRepository.class);
 
+        //initialement recherhe sur le monde
         Call<GlobalNews> callnews=newsrepo.searchNews("world", LocalDate.now(),"2b84bca18287417b9f34d9facdcab546");
 
         callnews.enqueue(new Callback<GlobalNews>() {
@@ -100,16 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Info","erreur");
             }
         });
-
-
-
-
-
-
-
-
-
-
+        //Recherche par mot cle
 
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -120,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 String d=date.getText().toString();
                 if(txt.equals("")){
                     System.out.println("enter");
+                    strings.clear();
                     Toast.makeText(getApplicationContext(),"Put a Keyword",Toast.LENGTH_SHORT).show(); //meaasge en bas
 
                 }else if(d.equals("")){  //pas de date saisie
@@ -140,14 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             news.articles.forEach(p->{
                                 strings.add(p);
                             });
-
-
-                            //strings.add(news.articles.get(0).getTitle());
-                            // Log.i("data",news.getTotalResults()+"");
-                            //Log.i("data",news.articles.get(0).getTitle());
-
                         }
-
                         @Override
                         public void onFailure(Call<GlobalNews> call, Throwable t) {
                             Log.i("Info","erreur");
