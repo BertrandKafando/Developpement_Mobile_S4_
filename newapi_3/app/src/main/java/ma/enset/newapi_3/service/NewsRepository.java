@@ -17,4 +17,6 @@ public interface NewsRepository {
     Call<GlobalNews> searchNews(@Query("q") String txt,@Query("date") LocalDate date ,@Query("apiKey") String api );
     @GET("v2/everything")
     Call<GlobalNews> searchNews(@Query("q") String txt,@Query("apiKey") String api );
+    @GET("v2/everything")
+    Call<GlobalNews> searchNews(@Query("date") LocalDate date ,@Query("apiKey") String api );
 }

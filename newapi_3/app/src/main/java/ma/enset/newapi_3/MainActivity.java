@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
    private List<Articles> strings=new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,18 +67,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
         //preparation
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://newsapi.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        NewsRepository newsrepo=retrofit.create(NewsRepository.class);
+
+        Call<GlobalNews> callnews=newsrepo.searchNews("world", LocalDate.now(),"2b84bca18287417b9f34d9facdcab546");
+
+        callnews.enqueue(new Callback<GlobalNews>() {
+            @Override
+            public void onResponse(Call<GlobalNews> call, Response<GlobalNews> response) {
+                Log.i("Info","ok");
+                GlobalNews news=response.body();
+
+                if(!response.isSuccessful()){
+
+                    Log.i("indo",String.valueOf(response.code()));
+                    return;
+                }
+                strings.clear();
+                news.articles.forEach(p->{
+
+                    strings.add(p);
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<GlobalNews> call, Throwable t) {
+                Log.i("Info","erreur");
+            }
+        });
+
+
+
+
+
+
+
 
 
 
@@ -85,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                NewsRepository newsrepo=retrofit.create(NewsRepository.class);
+
                 String txt=keyw.getText().toString();
                 String d=date.getText().toString();
                 if(txt.equals("")){
@@ -106,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("indo",String.valueOf(response.code()));
                                 return;
                             }
-
+                            strings.clear();
                             news.articles.forEach(p->{
                                 strings.add(p);
                             });
@@ -139,8 +169,9 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("indo",String.valueOf(response.code()));
                                 return;
                             }
-
+                            strings.clear();
                             news.articles.forEach(p->{
+
                                 strings.add(p);
                             });
 
