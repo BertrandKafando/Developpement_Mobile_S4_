@@ -32,7 +32,7 @@ class _StatsGridState extends State<StatsGrid> {
           Flexible(
             child: Row(
               children: <Widget>[
-                _buildStatCard('Recovered', widget.data.getRecovered(), Colors.green),
+                _buildStatCard('hospitalized', widget.data.getRecovered(), Colors.green),
                 _buildStatCard('Active', widget.data.getActive(), Colors.lightBlue),
               ],
             ),

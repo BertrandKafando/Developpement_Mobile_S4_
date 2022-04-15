@@ -15,15 +15,19 @@ class _NewsState extends State<News> {
   var news = null;
   void search(text) {
     String url =
-        "https://newsapi.org/v2/everything?q=${text}&from=2022-03-07&sortBy=publishedAt&apiKey=2b84bca18287417b9f34d9facdcab546";
+        "https://newsapi.org/v2/everything?q=${text}&from=2022-03-15&sortBy=publishedAt&apiKey=2b84bca18287417b9f34d9facdcab546";
+    print(url);
     http.get(Uri.parse(url)).then((response) {
       setState(() {
         news = json.decode(response.body);
+        print(news);
       });
     }).catchError((onError) {
       print(onError);
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +59,8 @@ class _NewsState extends State<News> {
             SizedBox(height: 10,),
 
             Expanded(
-                child: ListView.separated(
+                child:
+                ListView.separated(
                     itemCount: news == null ? 0 : news["articles"].length,
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
@@ -88,7 +93,8 @@ class _NewsState extends State<News> {
 
                         },
                       );
-                    }))
+                    })
+            )
           ],
         ),
       ),

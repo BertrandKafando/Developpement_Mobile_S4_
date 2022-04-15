@@ -37,7 +37,7 @@ class _GithusersState extends State<Githusers> {
             children: [
               Expanded(child: TextFormField(
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.contacts),
+                    prefixIcon: Icon(Icons.search),
                     hintText: "Entrez un nom",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15))),
@@ -53,6 +53,7 @@ class _GithusersState extends State<Githusers> {
               itemCount:users==null||users["items"]==null?0: users["items"].length,
               itemBuilder: (context, index){
               return ListTile(
+
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(users["items"][index]["avatar_url"]),
                 ),

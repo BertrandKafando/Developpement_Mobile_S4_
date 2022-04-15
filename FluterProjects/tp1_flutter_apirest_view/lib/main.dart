@@ -6,6 +6,8 @@ import 'package:tp3_drawerapi/pages/detail.dart';
 import 'package:tp3_drawerapi/pages/gitusers.dart';
 import 'package:tp3_drawerapi/pages/news_api.dart';
 
+import 'Provider/provider_contact.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
      ),
      routes: {
        "/":(context)=>Home(),
-       "/contacts":(context)=>Contact(),
+       "/contacts":(context)=>ContactProvider(),//or Contact()
        "/gitUsers":(context)=>Githusers(),
        "/covid":(context)=>CovidNews(),
        "/news":(context)=>News(),

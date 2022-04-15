@@ -1,21 +1,36 @@
-import 'dart:math';
-import 'package:charts_flutter/flutter.dart' as charts;
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../drawer/styles.dart';
+class CovidChartBar extends StatefulWidget {
+  List<int> covidCases;
+  List<dynamic> countryName;
+  List<BarChartGroupData> barChartGroups;
+  CovidChartBar(
+      {required this.covidCases,
+      required this.countryName,
+      required this.barChartGroups});
 
-class CovidChartBar extends StatelessWidget {
-  List<double> covidCases;
-  CovidChartBar({required this.covidCases});
-  final List<DataItem> _myData = List.generate(
-      30,
-      (index) => DataItem(
-            x: index,
-            y1: Random().nextInt(20) + Random().nextDouble(),
-            y2: Random().nextInt(20) + Random().nextDouble(),
-            y3: Random().nextInt(20) + Random().nextDouble(),
-          ));
+  @override
+  State<CovidChartBar> createState() => _CovidChartBarState();
+}
+
+class _CovidChartBarState extends State<CovidChartBar> {
+
+
+  Widget getcontry(double val , var meta){
+    for(int i=0; i<widget.covidCases.length;i++){
+     return   RotatedBox(
+       quarterTurns: 1,
+       child: Text(widget.countryName[val.toInt()]),
+     );
+
+    }
+    return    RotatedBox(
+      quarterTurns: 1,
+      child: Text(""),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,102 +49,57 @@ class CovidChartBar extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               alignment: Alignment.centerLeft,
               child: Text(
-                'Daily New Cases',
+                'Current States Confirmed Cases',
                 style: const TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-           /*   Container(
-            width: MediaQuery.of(context).size.width * 0.85,
-            child: BarChart(
-            BarChartData(
-            alignment: BarChartAlignment.spaceAround,
-            maxY: 16.0,
-            barTouchData: BarTouchData(enabled: false),
-            titlesData: FlTitlesData(
-            show: true,
-            bottomTitles: SideTitles(
-            margin: 10.0,
-            showTitles: true,
-            textStyle: Styles.chartLabelsTextStyle,
-            rotateAngle: 35.0,
-            getTitles: (double value) {
-            switch (value.toInt()) {
-            case 0:
-            return 'May 24';
-            case 1:
-            return 'May 25';
-            case 2:
-            return 'May 26';
-            case 3:
-            return 'May 27';
-            case 4:
-            return 'May 28';
-            case 5:
-            return 'May 29';
-            case 6:
-            return 'May 30';
-            default:
-            return '';
-            }
-            },
-    ),
+            AspectRatio(
+                aspectRatio: 1.7,
+                child:  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      width: 1000,
+                      padding: EdgeInsets.all(8),
+                      child:  BarChart(BarChartData(
+                          barGroups: widget.barChartGroups,
+                          borderData: FlBorderData(show: false),
+                          titlesData: FlTitlesData(
+                              bottomTitles: AxisTitles(
+                                  axisNameWidget: Text(
+                                    // You can use any widget here
+                                    'Covid Statistic 2021-2020',
+                                    style: TextStyle(color: Colors.green),
+                                    textAlign: TextAlign.right,
+                                    textDirection: TextDirection.rtl,
+                                  ),
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    getTitlesWidget: getcontry ,
+                                    interval: 1.5,
+                                  )
 
-    leftTitles: SideTitles(
-    margin: 10.0,
-    showTitles: true,
-    textStyle: Styles.chartLabelsTextStyle,
-    getTitles: (value) {
-    if (value == 0) {
-    return '0';
-    } else if (value % 3 == 0) {
-    return '${value ~/ 3 * 5}K';
-    }
-    return '';
-    }),
-    ),
-    gridData: FlGridData(
-    show: true,
-    checkToShowHorizontalLine: (value) => value % 3 == 0,
-    getDrawingHorizontalLine: (value) => FlLine(
-    color: Colors.black12,
-    strokeWidth: 1.0,
-    dashArray: [5],
-    ),
-    ),
-    borderData: FlBorderData(show: false),
-    barGroups: covidCases
-        .asMap()
-        .map((key, value) => MapEntry(
-    key,
-    BarChartGroupData(
-    x: key,
-    barRods: [
-    BarChartRodData(
-    toY: value,
-    color: Colors.red,
-    ),
-    ],
-    )))
-        .values
-        .toList(),
-    ),
-    ),
-    ),*/
+                              ),
+
+                              rightTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: false,
+                                  )),
+                              topTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: false,
+                                  ))),
+                        ))
 
 
+                    )
+                )
+
+            )
           ],
         ));
   }
 }
 
-class DataItem {
-  int x;
-  double y1;
-  double y2;
-  double y3;
-  DataItem(
-      {required this.x, required this.y1, required this.y2, required this.y3});
-}

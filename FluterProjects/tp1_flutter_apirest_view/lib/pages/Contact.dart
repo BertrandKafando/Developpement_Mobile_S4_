@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
 class Contact extends StatefulWidget {
   @override
   State<Contact> createState() => _ContactState();
 }
-
 class _ContactState extends State<Contact> {
   TextEditingController textController = new TextEditingController();
-
   List<String> data = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
