@@ -1,2 +1,10 @@
 # Developpement_Mobile_S4_
-Ce repository contient les codes sources des différentes cours  reprises par moi meme et les exercerices et tp des professeurs .
+A Repository to sum up the technical and practical activities related to courses taken in Mobile Development @ENSET-media
+
+This repository will treat:
+
+        Android 
+        Flutter
+        
+        
+        
