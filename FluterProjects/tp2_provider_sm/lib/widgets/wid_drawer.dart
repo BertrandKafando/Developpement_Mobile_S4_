@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tp3_drawerapi/drawer/drawlistile.dart';
+
+import 'drawlistile.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -24,7 +25,7 @@ class AppDrawer extends StatelessWidget {
           DrawerItem("Home", "/", Icon(Icons.home)),
           DrawerItem("Contacts", "/contacts", Icon(Icons.contacts)),
           DrawerItem("GitUsers", "/gitUsers", Icon(Icons.supervised_user_circle_sharp)),
-          DrawerItem("Covid19", "/covid", Icon(Icons.sick_sharp)),
+        //  DrawerItem("Covid19", "/covid", Icon(Icons.sick_sharp)),
           DrawerItem("News", "/news", Icon(Icons.search)),
         ],
       ),

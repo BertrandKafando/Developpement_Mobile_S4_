@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tp3_drawerapi/drawer/palette.dart';
+
+import '../style/palette.dart';
 
 //Creation de l'appbar
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {

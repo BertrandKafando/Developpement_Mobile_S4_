@@ -8,8 +8,15 @@ part 'contact_state.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   ContactBloc() : super(ContactInitial()) {
-    on<ContactEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+
+
+      on<addContact>((event, emit) => {
+        state.data.add(event.txt),
+      emit(ContactState(data: state.data, nbr: state.nbr+1))
+      });
+      on<deleteContact>((event, emit) => {
+         state.data.removeAt(event.id),
+        emit(ContactState(data: state.data, nbr: state.nbr-1))
+      });
   }
 }

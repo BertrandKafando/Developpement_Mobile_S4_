@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../pages/covid.dart';
+import '../page/covid.dart';
+
 
 class StatsGrid extends StatefulWidget{
   Data data;

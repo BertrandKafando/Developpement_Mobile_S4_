@@ -11,53 +11,64 @@ part 'contact_state.dart';
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   //declaration dans le constructeur  ENTRE ->event sortie des states
   ContactRepository contactRepository;
- late ContactEvent lastEvent=LoadAllContacts();
-  ContactBloc( ContactState contactState, this.contactRepository) : super(ContactInitial(contacts: [], errorMessage: '', requested: Requested.Loading)) {
-    on<ContactEvent>((event, emit)  async{
-      lastEvent=event;
+  late ContactEvent lastEvent = LoadAllContacts();
+  ContactBloc(ContactState contactState, this.contactRepository)
+      : super(ContactInitial(
+            contacts: [], errorMessage: '', requested: Requested.Loading)) {
+    on<ContactEvent>((event, emit) async {
+      lastEvent = event;
       // TODO: implement event handler
-      if (event is LoadAllContacts){
-        try{
-          emit(ContactState(contacts: [],errorMessage: '',requested: Requested.Loading ));
-          List<Contact>contacts= await contactRepository.getallContacts();
-          emit(ContactState(contacts: contacts,errorMessage: '',requested: Requested.Loaded));
+      if (event is LoadAllContacts) {
+        try {
+          emit(ContactState(
+              contacts: [], errorMessage: '', requested: Requested.Loading));
+          List<Contact> contacts = await contactRepository.getallContacts();
+          emit(ContactState(
+              contacts: contacts,
+              errorMessage: '',
+              requested: Requested.Loaded));
+        } catch (e) {
+          emit(ContactState(
+              contacts: [],
+              errorMessage: e.toString(),
+              requested: Requested.Error));
         }
-        catch( e){
-          emit(ContactState(contacts: [],errorMessage: e.toString(),requested: Requested.Error));
+      } else if (event is LoadBDDCContactsEvent) {
+        try {
+          emit(ContactState(
+              contacts: [], errorMessage: '', requested: Requested.Loading));
+          List<Contact> contacts =
+              await contactRepository.getcontactByGroup("BDDC");
+          emit(ContactState(
+              contacts: contacts,
+              errorMessage: '',
+              requested: Requested.Loaded));
+        } catch (e) {
+          emit(ContactState(
+              contacts: [],
+              errorMessage: e.toString(),
+              requested: Requested.Error));
         }
-
-
-      }
-      else if(event is LoadBDDCContactsEvent){
-        try{
-          emit(ContactState(contacts: [],errorMessage: '',requested: Requested.Loading ));
-          List<Contact>contacts= await contactRepository.getcontactByGroup("BDDC");
-          emit(ContactState(contacts: contacts,errorMessage: '',requested: Requested.Loaded));
-
+      } else if (event is LoadGLSIDContactsEvent) {
+        try {
+          emit(ContactState(
+              contacts: [], errorMessage: '', requested: Requested.Loading));
+          List<Contact> contacts =
+              await contactRepository.getcontactByGroup("GLSID");
+          emit(ContactState(
+              contacts: contacts,
+              errorMessage: '',
+              requested: Requested.Loaded));
+        } catch (e) {
+          emit(ContactState(
+              contacts: [],
+              errorMessage: e.toString(),
+              requested: Requested.Error));
         }
-        catch( e){
-          emit(ContactState(contacts: [],errorMessage: e.toString(),requested: Requested.Error));
-        }
-
-      }
-      else if(event is LoadGLSIDContactsEvent){
-        try{
-          emit(ContactState(contacts: [],errorMessage: '',requested: Requested.Loading ));
-          List<Contact>contacts= await contactRepository.getcontactByGroup("GLSID");
-          emit(ContactState(contacts: contacts,errorMessage: '',requested: Requested.Loaded));
-        }
-        catch( e){
-          emit(ContactState(contacts: [],errorMessage: e.toString(),requested: Requested.Error));
-        }
-
-
-      }
-      else if(event is DeleteContactEvent){
+      } else if (event is DeleteContactEvent) {
         contactRepository.deleteContact(event.index);
         print('ok');
       }
-
     });
   }
-
 }

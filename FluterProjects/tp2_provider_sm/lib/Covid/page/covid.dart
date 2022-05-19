@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tp3_drawerapi/drawer/palette.dart';
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
-import 'package:tp3_drawerapi/drawer/styles.dart';
-import '../widgets/covid_chart.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/data.dart';
-import '../widgets/stat_grid.dart';
 import 'package:http/http.dart' as http;
+
+import '../../style/palette.dart';
+import '../../style/styles.dart';
+import '../../widgets/custom_appbar.dart';
+import '../widget/covid_chart.dart';
+import '../widget/data.dart';
+import '../widget/stat_grid.dart';
 
 class CovidNews extends StatefulWidget {
   @override
